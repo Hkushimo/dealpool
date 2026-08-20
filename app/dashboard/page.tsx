@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { openPoolFromCode } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { expectedReturn, money } from "@/lib/money";
@@ -21,6 +22,20 @@ export default async function Dashboard() {
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Participant console</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Your pools</h1>
+      <form action={openPoolFromCode} className="mt-6 rounded-lg border border-blue-300/25 bg-blue-500/10 p-4">
+        <label className="block">
+          <span className="text-sm font-medium text-blue-100">Join with pool code</span>
+          <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+            <input
+              className="min-w-0 flex-1 rounded-md border border-blue-300/25 bg-white px-3 py-2"
+              name="code"
+              placeholder="Paste code or pool link"
+              required
+            />
+            <button className="rounded-md bg-stone-950 px-5 py-2.5 text-white">Open pool</button>
+          </div>
+        </label>
+      </form>
       <div className="mt-6 overflow-hidden rounded-lg border border-stone-200 bg-white">
         {rows?.length ? (
           <div className="divide-y divide-stone-200">

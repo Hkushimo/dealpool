@@ -16,6 +16,23 @@ function authErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : "Authentication failed.";
 }
 
+function normalizePoolCode(value: FormDataEntryValue | null) {
+  const rawValue = String(value ?? "").trim();
+  const pathMatch = rawValue.match(/\/d\/([^/?#]+)/i);
+  const code = (pathMatch?.[1] ?? rawValue).trim().toUpperCase();
+
+  if (!/^[A-Z0-9]{4,32}$/.test(code)) {
+    throw new Error("Enter a valid pool code.");
+  }
+
+  return code;
+}
+
+export async function openPoolFromCode(formData: FormData) {
+  const code = normalizePoolCode(formData.get("code"));
+  redirect(`/d/${code}`);
+}
+
 export async function signIn(formData: FormData) {
   let username: string;
   try {
