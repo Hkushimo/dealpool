@@ -5,7 +5,7 @@ import { getUserProfile } from "@/lib/auth";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DealPool",
+  title: "BreakBread",
   description: "Private pooled participation tracking"
 };
 
@@ -20,15 +20,15 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <header className="sticky top-0 z-10 border-b border-stone-200 bg-white/85 backdrop-blur-xl">
-          <nav className="mx-auto grid max-w-5xl grid-cols-[156px_1fr] items-center gap-4 px-4 py-4 sm:grid-cols-[180px_1fr]">
-            <Link href="/" className="flex h-10 w-[156px] items-center overflow-hidden sm:w-[180px]">
+          <nav className="mx-auto grid max-w-5xl grid-cols-[184px_1fr] items-center gap-4 px-4 py-4 sm:grid-cols-[220px_1fr]">
+            <Link href="/" className="flex h-10 w-[184px] items-center overflow-hidden sm:w-[220px]">
               <Image
-                src="/logo-dark.png"
-                alt="DealPool"
-                width={180}
-                height={58}
+                src="/breakbread-logo.png"
+                alt="BreakBread"
+                width={560}
+                height={176}
                 priority
-                className="h-9 w-[138px] object-contain object-left sm:w-[162px]"
+                className="h-9 w-[178px] object-contain object-left sm:w-[214px]"
               />
             </Link>
             <div className="flex items-center justify-end gap-3 text-sm">

@@ -6,7 +6,7 @@ export default async function NewDeal() {
 
   return (
     <div className="mx-auto max-w-2xl rounded-lg border border-stone-200 bg-white p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Admin console</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">Admin console</p>
       <h1 className="mt-2 text-2xl font-semibold text-stone-950">Create pool</h1>
       <form action={createDeal} className="mt-6 space-y-4">
         <label className="block">

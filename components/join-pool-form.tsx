@@ -39,7 +39,7 @@ export function JoinPoolForm({
         <button className="rounded-md bg-stone-950 px-5 py-2.5 text-white">Join pool</button>
       </div>
       {projectedReturn !== null ? (
-        <div className="rounded-md border border-blue-300/25 bg-blue-500/10 px-3 py-2 text-sm text-blue-100">
+        <div className="rounded-md border border-amber-300/25 bg-amber-500/10 px-3 py-2 text-sm text-amber-100">
           Expected return: <span className="font-semibold text-white">{money(projectedReturn)}</span>
         </div>
       ) : expectedSalePrice ? (

@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <section className="py-12">
       <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-200">Private pools</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200">Private pools</p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-stone-950 sm:text-6xl">
           Invest and break bread together.
         </h1>

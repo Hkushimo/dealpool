@@ -17,7 +17,7 @@ export default async function AdminDashboard() {
     <div>
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Command deck</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">Command deck</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Admin</h1>
         </div>
         <Link className="rounded-md bg-stone-950 px-4 py-2 text-white" href="/admin/deals/new">

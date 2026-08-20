@@ -34,16 +34,16 @@ export default async function AdminDealPage({
           <Link href="/admin" className="text-sm text-stone-500 hover:text-stone-950">
             Back to admin
           </Link>
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Pool control</p>
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">Pool control</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">{deal.title}</h1>
         </div>
         <Badge status={deal.status} />
       </div>
 
-      <section className="rounded-lg border border-blue-300/25 bg-blue-500/10 p-4">
-        <div className="text-sm font-medium text-blue-100">Pool link</div>
+      <section className="rounded-lg border border-amber-300/25 bg-amber-500/10 p-4">
+        <div className="text-sm font-medium text-amber-100">Pool link</div>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-          <input readOnly value={shareUrl} className="min-w-0 flex-1 rounded-md border border-blue-300/25 bg-white px-3 py-2 text-sm" />
+          <input readOnly value={shareUrl} className="min-w-0 flex-1 rounded-md border border-amber-300/25 bg-white px-3 py-2 text-sm" />
           <CopyLink value={shareUrl} />
         </div>
       </section>

@@ -1,6 +1,6 @@
-# DealPool
+# BreakBread
 
-DealPool is a small private Next.js application for tracking pooled participation in private pools.
+BreakBread is a small private Next.js application for tracking pooled participation in private pools.
 
 ## Environment Variables
 
@@ -12,7 +12,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SUPABASE_SECRET_KEY=
 ```
 
-`SUPABASE_SECRET_KEY` is server-only and must never be renamed to `NEXT_PUBLIC_*`. Supabase Auth is not used; DealPool stores salted password hashes in Postgres and uses an HTTP-only session cookie.
+`SUPABASE_SECRET_KEY` is server-only and must never be renamed to `NEXT_PUBLIC_*`. Supabase Auth is not used; BreakBread stores salted password hashes in Postgres and uses an HTTP-only session cookie.
 
 This repository ignores `.env`, `.env.*`, and `credentials.txt`.
 

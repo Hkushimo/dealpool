@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020716;
-  --foreground: #eef6ff;
-  --panel: rgba(4, 16, 37, 0.88);
-  --panel-strong: rgba(5, 22, 52, 0.94);
-  --line: rgba(73, 158, 255, 0.2);
-  --muted: #8ca6c4;
-  --accent: #0aa7ff;
-  --accent-2: #2f67ff;
+  --background: #020407;
+  --foreground: #fff7e6;
+  --panel: rgba(6, 10, 18, 0.9);
+  --panel-strong: rgba(9, 15, 27, 0.96);
+  --line: rgba(239, 180, 58, 0.22);
+  --muted: #b7a98e;
+  --accent: #f4b63f;
+  --accent-2: #f07f19;
 }
 
 html {
@@ -18,18 +18,18 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% 0%, rgba(8, 104, 255, 0.28), transparent 34%),
-    radial-gradient(circle at 88% 12%, rgba(10, 167, 255, 0.2), transparent 30%),
-    linear-gradient(180deg, rgba(2, 7, 22, 0.18), rgba(2, 7, 22, 0.84)),
-    repeating-linear-gradient(90deg, rgba(127, 186, 255, 0.025) 0 1px, transparent 1px 74px),
-    repeating-linear-gradient(0deg, rgba(127, 186, 255, 0.018) 0 1px, transparent 1px 74px),
+    radial-gradient(circle at 15% 0%, rgba(244, 182, 63, 0.18), transparent 32%),
+    radial-gradient(circle at 86% 8%, rgba(15, 28, 48, 0.9), transparent 34%),
+    linear-gradient(180deg, rgba(2, 4, 7, 0.18), rgba(2, 4, 7, 0.88)),
+    repeating-linear-gradient(90deg, rgba(244, 182, 63, 0.022) 0 1px, transparent 1px 74px),
+    repeating-linear-gradient(0deg, rgba(244, 182, 63, 0.016) 0 1px, transparent 1px 74px),
     var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 ::selection {
-  background: rgba(10, 167, 255, 0.38);
+  background: rgba(244, 182, 63, 0.38);
   color: #ffffff;
 }
 
@@ -37,17 +37,17 @@ input,
 textarea,
 select {
   font: inherit;
-  color: #edf7ff;
+  color: #fff7e6;
   background: rgba(3, 10, 20, 0.72);
-  border-color: rgba(128, 216, 255, 0.22);
+  border-color: rgba(239, 180, 58, 0.24);
   outline: none;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: rgba(10, 167, 255, 0.85);
-  box-shadow: 0 0 0 3px rgba(10, 167, 255, 0.14);
+  border-color: rgba(244, 182, 63, 0.85);
+  box-shadow: 0 0 0 3px rgba(244, 182, 63, 0.14);
 }
 
 button,
@@ -88,12 +88,12 @@ a {
 }
 
 .bg-stone-950 {
-  background: linear-gradient(135deg, #0aa7ff, #2f67ff);
-  color: #f6fbff;
-  box-shadow: 0 0 26px rgba(10, 119, 255, 0.28);
+  background: linear-gradient(135deg, #f7c65a, #f59e0b 52%, #cf6f12);
+  color: #080b12;
+  box-shadow: 0 0 26px rgba(244, 182, 63, 0.3);
 }
 
 .hover\:bg-stone-800:hover,
 .hover\:bg-stone-50:hover {
-  background-color: rgba(10, 119, 255, 0.12);
+  background-color: rgba(244, 182, 63, 0.11);
 }

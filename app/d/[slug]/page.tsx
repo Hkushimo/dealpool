@@ -36,7 +36,7 @@ export default async function DealPage({
       <section className="rounded-lg border border-stone-200 bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Pool terminal</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">Pool terminal</p>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">{deal.title}</h1>
           </div>
           <Badge status={deal.status} />
@@ -106,7 +106,7 @@ export default async function DealPage({
             expectedSalePrice={deal.expected_sale_price}
           />
         )}
-        {query.joined ? <p className="mt-3 text-sm text-blue-200">Your commitment was recorded and is awaiting payment confirmation.</p> : null}
+        {query.joined ? <p className="mt-3 text-sm text-amber-200">Your commitment was recorded and is awaiting payment confirmation.</p> : null}
       </section>
 
       <section className="rounded-lg border border-stone-200 bg-white">
