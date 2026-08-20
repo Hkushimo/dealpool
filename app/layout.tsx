@@ -20,15 +20,15 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <header className="sticky top-0 z-10 border-b border-stone-200 bg-white/85 backdrop-blur-xl">
-          <nav className="mx-auto grid max-w-5xl grid-cols-[184px_1fr] items-center gap-4 px-4 py-4 sm:grid-cols-[220px_1fr]">
-            <Link href="/" className="flex h-10 w-[184px] items-center overflow-hidden sm:w-[220px]">
+          <nav className="mx-auto grid max-w-5xl grid-cols-[198px_1fr] items-center gap-4 px-4 py-4 sm:grid-cols-[260px_1fr]">
+            <Link href="/" className="flex h-12 w-[198px] items-center overflow-hidden sm:w-[260px]">
               <Image
-                src="/breakbread-logo.png"
+                src="/breakbread-logo-header.png"
                 alt="BreakBread"
-                width={560}
-                height={176}
+                width={2048}
+                height={768}
                 priority
-                className="h-9 w-[178px] object-contain object-left sm:w-[214px]"
+                className="h-11 w-[192px] object-contain object-left sm:w-[252px]"
               />
             </Link>
             <div className="flex items-center justify-end gap-3 text-sm">
