@@ -7,8 +7,13 @@ const sessionCookie = "dealpool_session";
 const sessionDays = 30;
 
 function bytesToBase64Url(bytes: Uint8Array) {
-  return Buffer.from(bytes)
-    .toString("base64")
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let index = 0; index < bytes.length; index += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
+  }
+
+  return btoa(binary)
     .replaceAll("+", "-")
     .replaceAll("/", "_")
     .replaceAll("=", "");

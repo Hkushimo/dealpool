@@ -12,8 +12,11 @@ import { normalizeUsername } from "@/lib/username";
 
 const dealStatuses: DealStatus[] = ["open", "funded", "purchased", "sold", "closed"];
 
+function authErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Authentication failed.";
+}
+
 export async function signIn(formData: FormData) {
-  const supabase = createClient();
   let username: string;
   try {
     username = normalizeUsername(formData.get("username"));
@@ -23,27 +26,32 @@ export async function signIn(formData: FormData) {
   }
   const password = String(formData.get("password") ?? "");
   const next = String(formData.get("next") ?? "/dashboard");
-  const { data: profile, error } = await supabase
-    .from("users")
-    .select("id,password_hash,password_salt")
-    .eq("username", username)
-    .maybeSingle();
 
-  if (error || !profile?.password_hash || !profile.password_salt) {
-    redirect(`/login?error=${encodeURIComponent("Invalid username or password.")}&next=${encodeURIComponent(next)}`);
+  try {
+    const supabase = createClient();
+    const { data: profile, error } = await supabase
+      .from("users")
+      .select("id,password_hash,password_salt")
+      .eq("username", username)
+      .maybeSingle();
+
+    if (error || !profile?.password_hash || !profile.password_salt) {
+      throw new Error("Invalid username or password.");
+    }
+
+    const valid = await verifyPassword(password, profile.password_salt, profile.password_hash);
+    if (!valid) {
+      throw new Error("Invalid username or password.");
+    }
+
+    await createSession(profile.id);
+  } catch (error) {
+    redirect(`/login?error=${encodeURIComponent(authErrorMessage(error))}&next=${encodeURIComponent(next)}`);
   }
-
-  const valid = await verifyPassword(password, profile.password_salt, profile.password_hash);
-  if (!valid) {
-    redirect(`/login?error=${encodeURIComponent("Invalid username or password.")}&next=${encodeURIComponent(next)}`);
-  }
-
-  await createSession(profile.id);
   redirect(next);
 }
 
 export async function signUp(formData: FormData) {
-  const supabase = createClient();
   let username: string;
   try {
     username = normalizeUsername(formData.get("username"));
@@ -57,24 +65,29 @@ export async function signUp(formData: FormData) {
     redirect(`/signup?error=${encodeURIComponent("Use a password with at least 6 characters.")}&next=${encodeURIComponent(next)}`);
   }
 
-  const { hash, salt } = await hashPassword(password);
-  const { data: profile, error } = await supabase
-    .from("users")
-    .insert({
-      username,
-      display_name: username,
-      password_hash: hash,
-      password_salt: salt
-    })
-    .select("id")
-    .single();
+  try {
+    const supabase = createClient();
+    const { hash, salt } = await hashPassword(password);
+    const { data: profile, error } = await supabase
+      .from("users")
+      .insert({
+        username,
+        display_name: username,
+        password_hash: hash,
+        password_salt: salt
+      })
+      .select("id")
+      .single();
 
-  if (error || !profile) {
-    const message = error?.code === "23505" ? "That username is already taken." : error?.message ?? "Could not create account.";
-    redirect(`/signup?error=${encodeURIComponent(message)}&next=${encodeURIComponent(next)}`);
+    if (error || !profile) {
+      const message = error?.code === "23505" ? "That username is already taken." : error?.message ?? "Could not create account.";
+      throw new Error(message);
+    }
+
+    await createSession(profile.id);
+  } catch (error) {
+    redirect(`/signup?error=${encodeURIComponent(authErrorMessage(error))}&next=${encodeURIComponent(next)}`);
   }
-
-  await createSession(profile.id);
   redirect(next);
 }
 
