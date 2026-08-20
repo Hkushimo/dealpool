@@ -12,6 +12,22 @@ export function percent(value: number) {
   return `${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}%`;
 }
 
+export function expectedReturn(
+  amount: string | number | null | undefined,
+  targetAmount: string | number | null | undefined,
+  expectedSalePrice: string | number | null | undefined
+) {
+  const contribution = Number(amount ?? 0);
+  const target = Number(targetAmount ?? 0);
+  const salePrice = Number(expectedSalePrice ?? 0);
+
+  if (!Number.isFinite(contribution) || !Number.isFinite(target) || !Number.isFinite(salePrice) || target <= 0 || salePrice <= 0) {
+    return null;
+  }
+
+  return (contribution / target) * salePrice;
+}
+
 export function numeric(value: FormDataEntryValue | null) {
   const normalized = String(value ?? "").replace(/[$,]/g, "").trim();
   const amount = Number(normalized);

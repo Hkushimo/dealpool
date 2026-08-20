@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { money } from "@/lib/money";
+import { expectedReturn, money } from "@/lib/money";
 import { Badge } from "@/components/ui";
 
 export default async function Dashboard() {
@@ -9,7 +9,7 @@ export default async function Dashboard() {
   const supabase = createClient();
   const { data: rows } = await supabase
     .from("participations")
-    .select("amount,status,deals(id,slug,title,status,target_amount)")
+    .select("amount,status,deals(id,slug,title,status,target_amount,expected_sale_price)")
     .eq("user_id", user.id)
     .neq("status", "cancelled")
     .order("created_at", { ascending: false });
@@ -24,12 +24,16 @@ export default async function Dashboard() {
             {rows.map((row) => {
               const deal = Array.isArray(row.deals) ? row.deals[0] : row.deals;
               if (!deal) return null;
+              const projectedReturn = expectedReturn(row.amount, deal.target_amount, deal.expected_sale_price);
               return (
                 <Link key={`${deal.id}-${row.amount}`} href={`/d/${deal.slug}`} className="block p-4 transition hover:bg-stone-50">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <div className="font-medium">{deal.title}</div>
                       <div className="mt-1 text-sm text-stone-500">Your amount: {money(row.amount)}</div>
+                      {projectedReturn !== null ? (
+                        <div className="mt-1 text-sm text-stone-500">Expected return: {money(projectedReturn)}</div>
+                      ) : null}
                     </div>
                     <Badge status={row.status} />
                   </div>

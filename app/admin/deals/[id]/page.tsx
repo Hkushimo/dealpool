@@ -10,7 +10,7 @@ import { CopyLink } from "@/components/copy-link";
 import { Badge, ProgressBar, Stat } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth";
 import { getDealById } from "@/lib/deals";
-import { money, percent } from "@/lib/money";
+import { expectedReturn, money, percent } from "@/lib/money";
 
 export default async function AdminDealPage({
   params
@@ -94,6 +94,11 @@ export default async function AdminDealPage({
                   <div className="mt-1 text-sm text-stone-500">
                     {participation.users?.username ? `@${participation.users.username}` : ""}
                   </div>
+                  {deal.expected_sale_price ? (
+                    <div className="mt-2 text-sm text-stone-500">
+                      {money(participation.amount)} in, {money(expectedReturn(participation.amount, deal.target_amount, deal.expected_sale_price))} expected return
+                    </div>
+                  ) : null}
                 </div>
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <form action={editParticipationAmount.bind(null, participation.id, deal.id)} className="flex gap-2">

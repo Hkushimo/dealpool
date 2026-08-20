@@ -4,7 +4,7 @@ import { joinDeal } from "@/app/actions";
 import { Badge, ProgressBar, Stat, statusText } from "@/components/ui";
 import { getUserProfile } from "@/lib/auth";
 import { getDealBySlug } from "@/lib/deals";
-import { money, percent } from "@/lib/money";
+import { expectedReturn, money, percent } from "@/lib/money";
 
 export default async function DealPage({
   params,
@@ -26,6 +26,9 @@ export default async function DealPage({
     myParticipation?.status === "confirmed" && deal.confirmed_amount > 0
       ? (Number(myParticipation.amount) / deal.confirmed_amount) * 100
       : null;
+  const myExpectedReturn = myParticipation
+    ? expectedReturn(myParticipation.amount, deal.target_amount, deal.expected_sale_price)
+    : null;
 
   return (
     <div className="space-y-6">
@@ -73,11 +76,17 @@ export default async function DealPage({
             </div>
           </div>
         ) : myParticipation ? (
-          <div className="mt-4 grid gap-3 rounded-md border border-stone-200 bg-stone-50 p-4 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 rounded-md border border-stone-200 bg-stone-50 p-4 sm:grid-cols-4">
             <div>
               <div className="text-sm text-stone-500">Amount</div>
               <div className="font-semibold text-stone-950">{money(myParticipation.amount)}</div>
             </div>
+            {myExpectedReturn !== null ? (
+              <div>
+                <div className="text-sm text-stone-500">Expected return</div>
+                <div className="font-semibold text-stone-950">{money(myExpectedReturn)}</div>
+              </div>
+            ) : null}
             <div>
               <div className="text-sm text-stone-500">Status</div>
               <div className="font-semibold text-stone-950">{statusText(myParticipation.status)}</div>
@@ -116,7 +125,10 @@ export default async function DealPage({
                   <div className="font-medium text-stone-950">
                     {participation.users?.username || participation.users?.display_name || "Participant"}
                   </div>
-                  <div className="text-sm text-stone-500">{money(participation.amount)}</div>
+                  <div className="text-sm text-stone-500">
+                    {money(participation.amount)}
+                    {deal.expected_sale_price ? ` -> ${money(expectedReturn(participation.amount, deal.target_amount, deal.expected_sale_price))} expected` : ""}
+                  </div>
                 </div>
                 <Badge status={participation.status} />
               </div>
