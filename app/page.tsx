@@ -9,7 +9,7 @@ export default async function Home() {
       <div className="max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-200">Private deal pools</p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-stone-950 sm:text-6xl">
-          Track friend-funded deal participation without payment plumbing.
+          Invest and break bread together.
         </h1>
         <p className="mt-5 text-lg leading-8 text-stone-700">
           Create a shareable deal, let friends commit amounts, and confirm contributions only after
