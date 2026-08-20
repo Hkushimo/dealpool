@@ -9,10 +9,10 @@ Create `.env.local` for development:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_SECRET_KEY=
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` is server-only and must never be renamed to `NEXT_PUBLIC_*`. Supabase Auth is not used; DealPool stores salted password hashes in Postgres and uses an HTTP-only session cookie.
+`SUPABASE_SECRET_KEY` is server-only and must never be renamed to `NEXT_PUBLIC_*`. Supabase Auth is not used; DealPool stores salted password hashes in Postgres and uses an HTTP-only session cookie.
 
 This repository ignores `.env`, `.env.*`, and `credentials.txt`.
 
@@ -94,7 +94,7 @@ Before deployment, set the same environment variables in Cloudflare:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SITE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`, only as a secret
+- `SUPABASE_SECRET_KEY`, only as a secret
 
 Use the deployed domain for `NEXT_PUBLIC_SITE_URL` so copied deal links use the production URL.
 
@@ -114,9 +114,10 @@ NEXT_PUBLIC_SITE_URL
 ```txt
 CLOUDFLARE_ACCOUNT_ID
 CLOUDFLARE_API_TOKEN
-SUPABASE_SERVICE_ROLE_KEY
+SUPABASE_SECRET_KEY
 ```
 
 5. Push to the `main` branch. The workflow in `.github/workflows/deploy-cloudflare.yml` builds and deploys the Cloudflare Worker.
 
-Create the Cloudflare API token with Workers deploy permissions for the target account. Keep `SUPABASE_SERVICE_ROLE_KEY` as a secret only.
+Create the Cloudflare API token with Workers deploy permissions for the target account. Keep `SUPABASE_SECRET_KEY` as a secret only.
+

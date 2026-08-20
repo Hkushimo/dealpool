@@ -29,7 +29,7 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
 
       - name: Check deploy configuration
         shell: bash
@@ -38,13 +38,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "::error::Missing GitHub secret CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "::error::Missing GitHub secret CLOUDFLARE_API_TOKEN"; exit 1; }
           test -n "$NEXT_PUBLIC_SUPABASE_URL" || { echo "::error::Missing GitHub variable NEXT_PUBLIC_SUPABASE_URL"; exit 1; }
           test -n "$NEXT_PUBLIC_SITE_URL" || { echo "::error::Missing GitHub variable NEXT_PUBLIC_SITE_URL"; exit 1; }
-          test -n "$SUPABASE_SERVICE_ROLE_KEY" || { echo "::error::Missing GitHub secret SUPABASE_SERVICE_ROLE_KEY"; exit 1; }
+          test -n "$SUPABASE_SECRET_KEY" || { echo "::error::Missing GitHub secret SUPABASE_SECRET_KEY"; exit 1; }
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
@@ -55,8 +55,8 @@ jobs:
           secrets: |
             NEXT_PUBLIC_SUPABASE_URL
             NEXT_PUBLIC_SITE_URL
-            SUPABASE_SERVICE_ROLE_KEY
+            SUPABASE_SECRET_KEY
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
