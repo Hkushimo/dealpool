@@ -5,6 +5,7 @@ import type { AppUser } from "@/lib/types";
 
 const sessionCookie = "dealpool_session";
 const sessionDays = 30;
+const passwordHashIterations = 100000;
 
 function bytesToBase64Url(bytes: Uint8Array) {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -46,7 +47,7 @@ export async function hashPassword(password: string, salt = randomToken(18)) {
       name: "PBKDF2",
       hash: "SHA-256",
       salt: textBytes(salt),
-      iterations: 210000
+      iterations: passwordHashIterations
     },
     key,
     256
