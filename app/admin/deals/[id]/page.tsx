@@ -13,15 +13,12 @@ import { getDealById } from "@/lib/deals";
 import { money, percent } from "@/lib/money";
 
 export default async function AdminDealPage({
-  params,
-  searchParams
+  params
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ created?: string }>;
 }) {
   await requireAdmin();
   const { id } = await params;
-  const query = await searchParams;
   const result = await getDealById(id);
   if (!result) notFound();
 
@@ -43,16 +40,13 @@ export default async function AdminDealPage({
         <Badge status={deal.status} />
       </div>
 
-      {query.created ? (
-        <section className="rounded-lg border border-blue-300/25 bg-blue-500/10 p-4">
-          <div className="text-sm font-medium text-blue-100">Shareable URL</div>
-          <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-            <input readOnly value={shareUrl} className="min-w-0 flex-1 rounded-md border border-blue-300/25 bg-white px-3 py-2 text-sm" />
-            <CopyLink value={shareUrl} />
-          </div>
-          <p className="mt-2 text-xs text-blue-200">Copy the URL from the field above and send it privately.</p>
-        </section>
-      ) : null}
+      <section className="rounded-lg border border-blue-300/25 bg-blue-500/10 p-4">
+        <div className="text-sm font-medium text-blue-100">Deal link</div>
+        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+          <input readOnly value={shareUrl} className="min-w-0 flex-1 rounded-md border border-blue-300/25 bg-white px-3 py-2 text-sm" />
+          <CopyLink value={shareUrl} />
+        </div>
+      </section>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Target" value={money(deal.target_amount)} />
