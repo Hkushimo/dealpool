@@ -44,8 +44,16 @@ export default async function RootLayout({
                     </Link>
                   )}
                   <form action="/auth/signout" method="post">
-                    <button className="rounded-md border border-stone-300 px-3 py-1.5 text-stone-700 hover:bg-stone-50">
-                      Sign out
+                    <button
+                      aria-label="Sign out"
+                      title="Sign out"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-stone-300 text-stone-700 hover:bg-stone-50"
+                    >
+                      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <path d="M16 17l5-5-5-5" />
+                        <path d="M21 12H9" />
+                      </svg>
                     </button>
                   </form>
                 </>
