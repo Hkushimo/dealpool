@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { joinDeal } from "@/app/actions";
+import { JoinPoolForm } from "@/components/join-pool-form";
 import { Badge, ProgressBar, Stat, statusText } from "@/components/ui";
 import { getUserProfile } from "@/lib/auth";
 import { getDealBySlug } from "@/lib/deals";
@@ -35,7 +36,7 @@ export default async function DealPage({
       <section className="rounded-lg border border-stone-200 bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Deal terminal</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Pool terminal</p>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">{deal.title}</h1>
           </div>
           <Badge status={deal.status} />
@@ -99,16 +100,11 @@ export default async function DealPage({
             ) : null}
           </div>
         ) : (
-          <form action={joinDeal.bind(null, deal.id, slug)} className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <input
-              className="min-w-0 flex-1 rounded-md border border-stone-300 px-3 py-2"
-              name="amount"
-              inputMode="decimal"
-              placeholder="Amount"
-              required
-            />
-            <button className="rounded-md bg-stone-950 px-5 py-2.5 text-white">Join Deal</button>
-          </form>
+          <JoinPoolForm
+            action={joinDeal.bind(null, deal.id, slug)}
+            targetAmount={deal.target_amount}
+            expectedSalePrice={deal.expected_sale_price}
+          />
         )}
         {query.joined ? <p className="mt-3 text-sm text-blue-200">Your commitment was recorded and is awaiting payment confirmation.</p> : null}
       </section>
@@ -127,7 +123,7 @@ export default async function DealPage({
                   </div>
                   <div className="text-sm text-stone-500">
                     {money(participation.amount)}
-                    {deal.expected_sale_price ? ` -> ${money(expectedReturn(participation.amount, deal.target_amount, deal.expected_sale_price))} expected` : ""}
+                    {deal.expected_sale_price ? ` to ${money(expectedReturn(participation.amount, deal.target_amount, deal.expected_sale_price))} expected` : ""}
                   </div>
                 </div>
                 <Badge status={participation.status} />

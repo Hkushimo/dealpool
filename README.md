@@ -1,6 +1,6 @@
 # DealPool
 
-DealPool is a small private Next.js application for tracking pooled participation in individual deals.
+DealPool is a small private Next.js application for tracking pooled participation in private pools.
 
 ## Environment Variables
 
@@ -53,7 +53,7 @@ The migration creates:
 - enum statuses
 - a `deal_funding_totals` view
 
-Confirmed funding is calculated from confirmed participations. It is not stored as an editable deal field.
+Confirmed funding is calculated from confirmed participations. It is not stored as an editable pool field.
 
 ## Make The Initial User An Admin
 
@@ -72,7 +72,7 @@ Sign out and back in if the admin link does not appear immediately.
 ## MVP Flow
 
 1. Admin opens `/admin/deals/new`.
-2. Admin creates a deal.
+2. Admin creates a pool.
 3. Admin copies the generated `/d/[slug]` URL.
 4. Friend opens the URL, signs up or logs in, and enters a participation amount.
 5. The participation is stored as `pending`.
@@ -96,7 +96,7 @@ Before deployment, set the same environment variables in Cloudflare:
 - `NEXT_PUBLIC_SITE_URL`
 - `SUPABASE_SECRET_KEY`, only as a secret
 
-Use the deployed domain for `NEXT_PUBLIC_SITE_URL` so copied deal links use the production URL.
+Use the deployed domain for `NEXT_PUBLIC_SITE_URL` so copied pool links use the production URL.
 
 ## Recommended Deployment: GitHub + Cloudflare
 

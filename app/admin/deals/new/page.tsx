@@ -7,7 +7,7 @@ export default async function NewDeal() {
   return (
     <div className="mx-auto max-w-2xl rounded-lg border border-stone-200 bg-white p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Admin console</p>
-      <h1 className="mt-2 text-2xl font-semibold text-stone-950">Create deal</h1>
+      <h1 className="mt-2 text-2xl font-semibold text-stone-950">Create pool</h1>
       <form action={createDeal} className="mt-6 space-y-4">
         <label className="block">
           <span className="text-sm font-medium text-stone-700">Title</span>
@@ -27,7 +27,7 @@ export default async function NewDeal() {
             <input className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2" name="expected_sale_price" inputMode="decimal" />
           </label>
         </div>
-        <button className="rounded-md bg-stone-950 px-5 py-2.5 text-white">Create deal</button>
+        <button className="rounded-md bg-stone-950 px-5 py-2.5 text-white">Create pool</button>
       </form>
     </div>
   );

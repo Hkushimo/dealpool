@@ -21,7 +21,7 @@ export default async function AdminDashboard() {
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Admin</h1>
         </div>
         <Link className="rounded-md bg-stone-950 px-4 py-2 text-white" href="/admin/deals/new">
-          New deal
+          New pool
         </Link>
       </div>
       <div className="mt-6 overflow-hidden rounded-lg border border-stone-200 bg-white">
@@ -49,7 +49,7 @@ export default async function AdminDashboard() {
             })}
           </div>
         ) : (
-          <p className="p-6 text-stone-600">Create your first deal to get started.</p>
+          <p className="p-6 text-stone-600">Create your first pool to get started.</p>
         )}
       </div>
     </div>

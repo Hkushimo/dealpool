@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "DealPool",
-  description: "Private pooled deal participation tracking"
+  description: "Private pooled participation tracking"
 };
 
 export default async function RootLayout({

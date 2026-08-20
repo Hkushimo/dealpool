@@ -17,7 +17,7 @@ export default async function Dashboard() {
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">Participant console</p>
-      <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Your deals</h1>
+      <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">Your pools</h1>
       <div className="mt-6 overflow-hidden rounded-lg border border-stone-200 bg-white">
         {rows?.length ? (
           <div className="divide-y divide-stone-200">
@@ -42,7 +42,7 @@ export default async function Dashboard() {
             })}
           </div>
         ) : (
-          <p className="p-6 text-stone-600">Deals you join will appear here.</p>
+          <p className="p-6 text-stone-600">Pools you join will appear here.</p>
         )}
       </div>
     </div>

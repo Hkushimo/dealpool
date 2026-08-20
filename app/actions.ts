@@ -122,7 +122,7 @@ export async function createDeal(formData: FormData) {
     if (error.code !== "23505") throw new Error(error.message);
   }
 
-  throw new Error("Could not generate a unique deal link.");
+  throw new Error("Could not generate a unique pool link.");
 }
 
 export async function joinDeal(dealId: string, slug: string, formData: FormData) {
