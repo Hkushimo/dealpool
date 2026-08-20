@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+credentials.txt
+.next
+.open-next
+node_modules
+dist
+.vercel
+.wrangler
+*.local
+ChatGPT Image*.png
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
