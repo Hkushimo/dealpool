@@ -12,8 +12,7 @@ export default async function Home() {
           Invest and break bread together.
         </h1>
         <p className="mt-5 text-lg leading-8 text-stone-700">
-          Create a shareable pool, let friends commit amounts, and confirm contributions only after
-          you receive payment outside the app.
+          Start a private pool, let everyone put in what they want, and track each person&apos;s share of the profit when the opportunity pays out.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           {user ? (
