@@ -1,11 +1,14 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { expectedReturn, money } from "@/lib/money";
 import { Badge } from "@/components/ui";
 
 export default async function Dashboard() {
-  const { user } = await requireUser();
+  const { user, profile } = await requireUser();
+  if (profile?.is_admin) redirect("/admin");
+
   const supabase = createClient();
   const { data: rows } = await supabase
     .from("participations")

@@ -34,14 +34,15 @@ export default async function RootLayout({
             <div className="flex items-center justify-end gap-3 text-sm">
               {user ? (
                 <>
-                  <Link href="/dashboard" className="text-stone-700 hover:text-stone-950">
-                    Dashboard
-                  </Link>
                   {profile?.is_admin ? (
                     <Link href="/admin" className="text-stone-700 hover:text-stone-950">
                       Admin
                     </Link>
-                  ) : null}
+                  ) : (
+                    <Link href="/dashboard" className="text-stone-700 hover:text-stone-950">
+                      Dashboard
+                    </Link>
+                  )}
                   <form action="/auth/signout" method="post">
                     <button className="rounded-md border border-stone-300 px-3 py-1.5 text-stone-700 hover:bg-stone-50">
                       Sign out
