@@ -8,6 +8,7 @@ node_modules
 dist
 .vercel
 .wrangler
+.wrangler-dry-run
 *.local
 ChatGPT Image*.png
 npm-debug.log*

@@ -7,16 +7,27 @@ const sessionCookie = "dealpool_session";
 const sessionDays = 30;
 
 function bytesToBase64Url(bytes: Uint8Array) {
-  let binary = "";
-  const chunkSize = 0x8000;
-  for (let index = 0; index < bytes.length; index += chunkSize) {
-    binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+  let output = "";
+
+  for (let index = 0; index < bytes.length; index += 3) {
+    const first = bytes[index];
+    const second = bytes[index + 1];
+    const third = bytes[index + 2];
+
+    output += alphabet[first >> 2];
+    output += alphabet[((first & 0x03) << 4) | ((second ?? 0) >> 4)];
+
+    if (index + 1 < bytes.length) {
+      output += alphabet[((second & 0x0f) << 2) | ((third ?? 0) >> 6)];
+    }
+
+    if (index + 2 < bytes.length) {
+      output += alphabet[third & 0x3f];
+    }
   }
 
-  return btoa(binary)
-    .replaceAll("+", "-")
-    .replaceAll("/", "_")
-    .replaceAll("=", "");
+  return output;
 }
 
 function textBytes(value: string) {
