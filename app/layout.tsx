@@ -20,18 +20,18 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <header className="sticky top-0 z-10 border-b border-stone-200 bg-white/85 backdrop-blur-xl">
-          <nav className="mx-auto grid max-w-5xl grid-cols-[198px_1fr] items-center gap-4 px-4 py-4 sm:grid-cols-[260px_1fr]">
-            <Link href="/" className="flex h-12 w-[198px] items-center overflow-hidden sm:w-[260px]">
+          <nav className="mx-auto grid max-w-5xl grid-cols-[124px_minmax(0,1fr)] items-center gap-2 px-3 py-4 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-4 sm:px-4 md:grid-cols-[260px_minmax(0,1fr)]">
+            <Link href="/" className="flex h-10 w-[124px] items-center overflow-hidden sm:h-12 sm:w-[220px] md:w-[260px]">
               <Image
                 src="/breakbread-logo-header.png"
                 alt="BreakBread"
                 width={2048}
                 height={768}
                 priority
-                className="h-11 w-[192px] object-contain object-left sm:w-[252px]"
+                className="h-9 w-[120px] object-contain object-left sm:h-11 sm:w-[214px] md:w-[252px]"
               />
             </Link>
-            <div className="flex items-center justify-end gap-3 text-sm">
+            <div className="flex min-w-0 items-center justify-end gap-2 text-xs sm:gap-3 sm:text-sm">
               {user ? (
                 <>
                   <Link href="/dashboard" className="text-stone-700 hover:text-stone-950">
