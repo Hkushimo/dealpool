@@ -34,15 +34,14 @@ export default async function RootLayout({
             <div className="flex items-center justify-end gap-3 text-sm">
               {user ? (
                 <>
+                  <Link href="/dashboard" className="text-stone-700 hover:text-stone-950">
+                    Dashboard
+                  </Link>
                   {profile?.is_admin ? (
                     <Link href="/admin" className="text-stone-700 hover:text-stone-950">
                       Admin
                     </Link>
-                  ) : (
-                    <Link href="/dashboard" className="text-stone-700 hover:text-stone-950">
-                      Dashboard
-                    </Link>
-                  )}
+                  ) : null}
                   <form action="/auth/signout" method="post">
                     <button
                       aria-label="Sign out"

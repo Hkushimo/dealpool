@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { openPoolFromCode } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -7,8 +6,7 @@ import { expectedReturn, money } from "@/lib/money";
 import { Badge } from "@/components/ui";
 
 export default async function Dashboard() {
-  const { user, profile } = await requireUser();
-  if (profile?.is_admin) redirect("/admin");
+  const { user } = await requireUser();
 
   const supabase = createClient();
   const { data: rows } = await supabase
